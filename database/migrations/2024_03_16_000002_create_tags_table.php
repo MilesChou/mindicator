@@ -13,10 +13,10 @@ return new class extends Migration {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->string('name');
             $table->integer('repository_id');
             $table->string('commit_sha1')->unique();
+            $table->json('labels')->default('[]');
 
             $table->foreign('repository_id')
                 ->references('id')

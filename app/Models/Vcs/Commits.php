@@ -2,6 +2,7 @@
 
 namespace App\Models\Vcs;
 
+use App\Vcs\Git\ReferenceInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Repositories $repository
  * @property Collection|Tags[] $tags
  */
-class Commits extends Model
+class Commits extends Model implements ReferenceInterface
 {
     use HasFactory;
 
@@ -44,11 +45,16 @@ class Commits extends Model
         return $this->hasMany(Tags::class, 'commit_sha1', 'sha1');
     }
 
+    public function ref(): string
+    {
+        return $this->sha1;
+    }
+
     public function cloverFile(): string
     {
         return storage_path('app/metrics') . '/'
             . $this->repository->cacheDir() . '/'
-            . $this->sha1 . '/'
+            . $this->ref() . '/'
             . 'clover.xml';
     }
 }

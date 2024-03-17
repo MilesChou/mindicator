@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreign('repository_id')
                 ->references('id')
                 ->on('repositories');
+
+            $table->index(['repository_id', 'sha1']);
         });
     }
 
