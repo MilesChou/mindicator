@@ -13,7 +13,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('url')->unique();
             $table->string('private_key')->nullable();
-            $table->json('tags')->default('[]');
+            $table->json('labels')->default('[]');
         });
     }
 
