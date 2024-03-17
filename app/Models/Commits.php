@@ -31,8 +31,13 @@ class Commits extends Model
         ];
     }
 
-    public function repository():HasOne
+    protected function repository(): HasOne
     {
         return $this->hasOne(Repositories::class, 'id', 'repository_id');
+    }
+
+    public function cloverFile(): string
+    {
+        return storage_path('app/metrics') . '/' . $this->repository->cacheDir('clover.xml');
     }
 }

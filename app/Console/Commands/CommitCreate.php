@@ -78,8 +78,7 @@ class CommitCreate extends Command
             throw new RuntimeException('File not found');
         }
 
-        $target = storage_path('app/metrics') . '/'
-            . $commit->repository->cacheDir('clover.xml');
+        $target = $commit->cloverFile();
 
         File::ensureDirectoryExists(dirname($target));
         File::copy($source, $target);
