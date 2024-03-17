@@ -11,10 +11,9 @@ return new class extends Migration
         Schema::create('repositories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('owner_id');
-            $table->string('url');
-            $table->string('private_key');
-            $table->string('tags');
+            $table->string('url')->unique();
+            $table->string('private_key')->nullable();
+            $table->json('tags')->default('[]');
         });
     }
 
