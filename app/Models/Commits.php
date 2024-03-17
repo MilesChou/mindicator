@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $repository_id
  * @property string $sha1
  * @property array $labels
- *
  * @property Repositories $repository
  */
 class Commits extends Model
@@ -38,6 +37,9 @@ class Commits extends Model
 
     public function cloverFile(): string
     {
-        return storage_path('app/metrics') . '/' . $this->repository->cacheDir('clover.xml');
+        return storage_path('app/metrics') . '/'
+            . $this->repository->cacheDir() . '/'
+            . $this->sha1 . '/'
+            . 'clover.xml';
     }
 }

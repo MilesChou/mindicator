@@ -25,11 +25,11 @@ class Repositories extends Model
         ];
     }
 
-    public function cacheDir(string $path = null): string
+    public function cacheDir(?string $path = null): string
     {
         $cacheDir = Preg::replace('{[^a-z0-9.]}i', '-', $this->url);
 
-        if (null === $path) {
+        if ($path === null) {
             return $cacheDir;
         }
 

@@ -45,7 +45,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Execute Pint
-        run: php vendor/bin/pint --test
+        run: php vendor/bin/phpcs
 
       - name: Execute Tests
         run: php vendor/bin/pest

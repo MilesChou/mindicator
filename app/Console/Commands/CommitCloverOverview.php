@@ -24,7 +24,7 @@ class CommitCloverOverview extends Command
         $xml = simplexml_load_file($commit->cloverFile());
 
         foreach ($xml->project->metrics as $metrics) {
-            dump((array)$metrics);
+            dump((array) $metrics);
         }
 
         return self::SUCCESS;

@@ -9,7 +9,6 @@ use Composer\Repository\VcsRepository;
 
 class Factory
 {
-
     public function create(string $url): VcsRepository
     {
         $repoConfig = [
@@ -32,9 +31,6 @@ class Factory
         });
     }
 
-    /**
-     * @return NullIO
-     */
     public function createIO(): NullIO
     {
         return new NullIO();

@@ -5,10 +5,8 @@ namespace App\Console\Commands;
 use App\Models\Commits;
 use App\Models\Repositories;
 use App\Vcs\Git\Factory as GitFactory;
-use Composer\Pcre\Preg;
 use Composer\Repository\Vcs\VcsDriverInterface;
 use Composer\Util\Platform;
-use Composer\Util\ProcessExecutor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use RuntimeException;
@@ -55,9 +53,9 @@ class CommitCreate extends Command
 
         /** @var Commits $commitEntity */
         $commitEntity = Commits::query()->firstOrNew([
-            'repository_id' => $repository->id,
-        ], [
             'sha1' => $commit,
+        ], [
+            'repository_id' => $repository->id,
             'labels' => $labels,
         ]);
 
