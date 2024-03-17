@@ -35,6 +35,8 @@ class RepositoryCreate extends Command
             'labels' => json_encode($labels),
         ]);
 
+        $repository->save();
+
         $repo = $gitFactory->create($repository->url);
 
         /** @var VcsDriverInterface $driver */
