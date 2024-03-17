@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Repositories;
+use App\Models\Vcs\Repositories;
 use App\Vcs\Git\Factory as GitFactory;
 use Composer\Repository\Vcs\VcsDriverInterface;
 use Composer\Util\Platform;

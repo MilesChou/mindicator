@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Commits;
+use App\Models\Vcs\Commits;
 use App\Models\User;
 
 class CommitsPolicy

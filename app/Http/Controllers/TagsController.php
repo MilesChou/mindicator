@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRepositoriesRequest;
-use App\Http\Requests\UpdateRepositoriesRequest;
-use App\Models\Vcs\Repositories;
+use App\Http\Requests\StoreTagsRequest;
+use App\Http\Requests\UpdateTagsRequest;
+use App\Models\Vcs\Tags;
 
-class RepositoriesController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class RepositoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRepositoriesRequest $request)
+    public function store(StoreTagsRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class RepositoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Repositories $sourceRepository)
+    public function show(Tags $tags)
     {
         //
     }
@@ -43,7 +43,7 @@ class RepositoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Repositories $sourceRepository)
+    public function edit(Tags $tags)
     {
         //
     }
@@ -51,7 +51,7 @@ class RepositoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRepositoriesRequest $request, Repositories $sourceRepository)
+    public function update(UpdateTagsRequest $request, Tags $tags)
     {
         //
     }
@@ -59,7 +59,7 @@ class RepositoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Repositories $sourceRepository)
+    public function destroy(Tags $tags)
     {
         //
     }

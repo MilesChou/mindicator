@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommitsRequest;
 use App\Http\Requests\UpdateCommitsRequest;
-use App\Models\Commits;
+use App\Models\Vcs\Commits;
 
 class CommitsController extends Controller
 {

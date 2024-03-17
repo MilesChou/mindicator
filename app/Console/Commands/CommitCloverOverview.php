@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Commits;
+use App\Models\Vcs\Commits;
 use Illuminate\Console\Command;
 
 class CommitCloverOverview extends Command

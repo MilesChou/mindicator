@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Vcs;
 
 use Composer\Pcre\Preg;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
  * @property string $url
+ *
+ * @property Collection|Commits[] $commits
+ * @property Collection|Tags[] $tags
  */
 class Repositories extends Model
 {
@@ -23,6 +28,16 @@ class Repositories extends Model
         return [
             'labels' => 'array',
         ];
+    }
+
+    protected function commits(): HasMany
+    {
+        return $this->hasMany(Tags::class, 'repository_id', 'id');
+    }
+
+    protected function tags(): HasMany
+    {
+        return $this->hasMany(Tags::class, 'repository_id', 'id');
     }
 
     public function cacheDir(?string $path = null): string
