@@ -2,11 +2,13 @@
 
 namespace App\Models\Vcs;
 
+use App\Vcs\Git\ReferenceInterface;
 use Composer\Pcre\Preg;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use RuntimeException;
 
 /**
  * @property int $id
@@ -49,5 +51,24 @@ class Repositories extends Model
         }
 
         return $cacheDir . '/' . ltrim($path, '/');
+    }
+
+    public function findRef(string $ref): ReferenceInterface
+    {
+        /** @var Tags $tag */
+        $tag = $this->tags->firstWhere('name', $ref);
+
+        if ($tag) {
+            return $tag;
+        }
+
+        /** @var Commits $commit */
+        $commit = $this->commits->firstWhere('sha1', $ref);
+
+        if ($commit) {
+            return $commit;
+        }
+
+        throw new RuntimeException('Cannot find ref: ' . $ref);
     }
 }
