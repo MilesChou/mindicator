@@ -2,6 +2,8 @@
 
 namespace App\Vcs\Git;
 
+use App\Vcs\ComposerDriverWrapper;
+use App\Vcs\VcsInterface;
 use Composer\Config;
 use Composer\Factory as ComposerFactory;
 use Composer\IO\NullIO;
@@ -9,7 +11,7 @@ use Composer\Repository\VcsRepository;
 
 class Factory
 {
-    public function create(string $url): VcsRepository
+    public function create(string $url): VcsInterface
     {
         $repoConfig = [
             'url' => $url,
@@ -19,7 +21,9 @@ class Factory
         $config = $this->createConfig();
         $httpDownloader = ComposerFactory::createHttpDownloader($io, $config);
 
-        return new VcsRepository($repoConfig, $io, $config, $httpDownloader);
+        $driver = (new VcsRepository($repoConfig, $io, $config, $httpDownloader))->getDriver();
+
+        return ComposerDriverWrapper::wrap($driver);
     }
 
     private function createConfig(): Config

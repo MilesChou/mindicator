@@ -63,7 +63,7 @@ class Repositories extends Model
         }
 
         /** @var Commits $commit */
-        $commit = $this->commits->firstWhere('sha1', $ref);
+        $commit = $this->commits->firstWhere('commit_sha1', $ref);
 
         if ($commit) {
             return $commit;

@@ -37,10 +37,7 @@ class RepositoryCreate extends Command
 
         $repository->save();
 
-        $repo = $gitFactory->create($repository->url);
-
-        /** @var VcsDriverInterface $driver */
-        $driver = $repo->getDriver();
+        $driver = $gitFactory->create($repository->url);
 
         dd($driver->getTags());
 

@@ -41,10 +41,7 @@ class CommitCreate extends Command
             ->where('url', $url)
             ->firstOrFail();
 
-        $repo = $gitFactory->create($repository->url);
-
-        /** @var VcsDriverInterface $driver */
-        $driver = $repo->getDriver();
+        $driver = $gitFactory->create($repository->url);
 
         $commitSha1 = (new CommitResolver($driver))->resolve($ref);
 
