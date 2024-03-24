@@ -21,6 +21,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Detect credential
+        run: ./scripts/detect-credential
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -44,7 +47,7 @@ jobs:
       - name: Build F2E
         run: npm install && npm run build
 
-      - name: Execute Pint
+      - name: Execute PHP cs
         run: php vendor/bin/phpcs
 
       - name: Execute Tests
@@ -55,3 +58,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: MilesChou/mindicator
+          verbose: true
